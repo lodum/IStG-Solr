@@ -295,7 +295,6 @@
 	<field name="dc:creator" type="text_german" stored="true" indexed="true" multiValued="true"  />
 	<field name="bibo:editor" type="text_german" stored="true" indexed="true" multiValued="true"  />
 	<field name="istg:signatur" type="string" indexed="true" stored="true" multiValued="false"  />
-
 	<field name="bibo:volume" type="string" indexed="false" stored="true" multiValued="false"  />
 	<field name="istg:reihe" type="string" stored="true" indexed="false" multiValued="true"  />
 	<field name="rdfs:comment" type="text_german" stored="true" indexed="true" multiValued="false"  />

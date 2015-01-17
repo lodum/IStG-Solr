@@ -1,5 +1,7 @@
 *.dat
 *.json
 *.txt
+*.nt
+*.ttl
 
 node_modules/
