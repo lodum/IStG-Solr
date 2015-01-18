@@ -1,4 +1,5 @@
 var fs = require('fs');
+var argv = require('minimist')(process.argv.slice(2));
 var split = require('split');
 var Writable = require('stream').Writable;
 
@@ -18,22 +19,19 @@ var numbers = [];
 var numbersArray = new Array(10);
 var seriesArray = new Array(10);
 var baseURI = 'http://data.uni-muenster.de/context/istg/allegro/'
+var file = argv.f;
 
-fs.createReadStream('bibtex_20140909_Full.dat')
+fs.createReadStream(file)
   .pipe(split())
   .on('data', function (chunk) {
     stream = this;
-    // stream.pause();
     convert(chunk);
-    // setTimeout(function () {
-    //   stream.resume();
-    // },1)
   })
   .on('error', function (err) {
     console.log('Error: '+err);
   })
   .on('end', function () {
-    ws = fs.createWriteStream('data.json');
+    ws = fs.createWriteStream(file.split(".")[0]+".json");
     ws.write(JSON.stringify(entries));
     console.log("Finished");
   })

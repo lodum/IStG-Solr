@@ -339,7 +339,7 @@
 	<field name="isbd:p1016" type="string" stored="true" indexed="false" multiValued="true"  />
 	<field name="isbd:p1018" type="boolean" indexed="false" stored="true" multiValued="false"  />
 	<field name="istg:HistoricPlace" type="text_german"  stored="true" indexed="true" multiValued="true"  />
-	<field name="istg:historicPlacenameType" type="int" indexed="false" stored="true" multiValued="false"  />
+	<field name="istg:historicPlacenameType" type="string" indexed="false" stored="true" multiValued="false"  />
 	<field name="vocab:HistorischeLageTyp_Bezeichnung" type="string" stored="true" indexed="false" multiValued="true"  />
 	<field name="istg:paralleltitel" type="text_german" stored="true" indexed="true" multiValued="true"  />
 	<field name="istg:mapScale" type="text_german" stored="true" indexed="false" multiValued="true"  />
