@@ -1,6 +1,7 @@
 var fs = require('fs');
 var argv = require('minimist')(process.argv.slice(2));
 var split = require('split');
+var _ = require('underscore');
 var Writable = require('stream').Writable;
 
 var id = "";
@@ -31,14 +32,29 @@ fs.createReadStream(file)
       subject = triple[0].split("<")[1];
       predicate = triple[1].split("<")[1];
       object = triple[2];
+
       if (subject.indexOf(baseURI) > -1) {
         if (id == "") {
           id = triple[0].split("<")[1];
           entry.id = id;
         } else if (id !== triple[0].split("<")[1]) {
           entries.push(entry);
-          id = "";
+          id = triple[0].split("<")[1];
           entry = {};
+          entry.id = id;
+        }
+
+        //check if object with id already exists in entries array
+        obj = _.find(entries, function (obj) {
+          if (obj.id === subject) {
+            return obj;
+          }
+        });
+
+        //if id already exists, then copy object and delete old one
+        if (obj !== undefined) {
+          entry = obj;
+          entries.splice(entries.indexOf(obj),1);
         }
 
         if (predicate === "http://xmlns.com/foaf/spec/#name") {
