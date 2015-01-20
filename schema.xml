@@ -299,7 +299,7 @@
 	<field name="istg:reihe" type="string" stored="true" indexed="false" multiValued="true"  />
 	<field name="rdfs:comment" type="text_german" stored="true" indexed="true" multiValued="false"  />
 	<field name="istg:relief" type="string" stored="true" indexed="false" multiValued="false"  />
-	<field name="dct:title" type="text_german"  indexed="true" stored="true" multiValued="true"  />
+	<field name="dct:title" type="text_german"  indexed="true" stored="true" multiValued="false"  />
 	<field name="istg:inventory" type="string"  indexed="false" stored="true" multiValued="false"  />
 	<field name="lido:originaltitel" type="text_german" stored="true" indexed="true" multiValued="true"  />
 	<field name="istg:recordingTime" type="string"  indexed="false" stored="true" multiValued="true"  />

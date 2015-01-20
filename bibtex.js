@@ -340,7 +340,6 @@ fs.createReadStream(file)
       }
 
       entries.push(entry);
-      console.log(counter++);
       newEntry = false;
       entry = {};
       authors = [];

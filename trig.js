@@ -73,12 +73,9 @@ fs.createReadStream(file)
             entry["rdf:type"].push(object.split("<")[1]);
           }
         } else if (predicate === "http://purl.org/dc/terms/title") {
-          if (!("dct:title" in entry)) {
-            entry["dct:title"] = [];
-          }
           title = triple[2].split('"')[1].trim();
           if (!_.contains(entry["dct:title"],title)) {
-            entry["dct:title"].push(title);
+            entry["dct:title"] = title;
           }
         } else if (predicate === "http://vocab.lodum.de/istg/themeLocation") {
           entry["istg:themeLocation"] = object.split("<")[1];
