@@ -113,30 +113,30 @@ fs.createReadStream(file)
           }
           entry["dct:publisher"].push(value);
         } else if(key.indexOf("number") > -1) {
-          if (value === "...") {
-            numbers.push(value);
-            if (value === "number") {
+          if (key !== "...") {
+            numbers.push(key);
+            if (key === "number") {
               number = ["number",value];
               numbersArray[0] = number;
-            } else if (value = "numberi") {
+            } else if (key = "numberi") {
               number = ["numberi",value];
               numbersArray[1] = number;
-            } else if (value = "numberii") {
+            } else if (key = "numberii") {
               number = ["numberii",value];
               numbersArray[2] = number;
-            } else if (value = "numberiii") {
+            } else if (key = "numberiii") {
               number = ["numberiii",value];
               numbersArray[3] = number;
-            } else if (value = "numberiv") {
+            } else if (key = "numberiv") {
               number = ["numberiv",value];
               numbersArray[4] = number;
-            } else if (value = "numberv") {
+            } else if (key = "numberv") {
               number = ["numberv",value];
               numbersArray[5] = number;
-            } else if (value = "numbervi") {
+            } else if (key = "numbervi") {
               number = ["numbervi",value];
               numbersArray[6] = number;
-            } else if (value = "numbervii") {
+            } else if (key = "numbervii") {
               number = ["numbervii",value];
               numbersArray[7] = number;
             }
@@ -152,28 +152,28 @@ fs.createReadStream(file)
           } else {
             entry["dct:isPartOf"].push(value);
           }
-          if (value === "series") {
+          if (key === "series") {
             serie = ["series",value];
             seriesArray[0] = serie;
-          } else if (value = "seriesi") {
+          } else if (key == "seriesi") {
             serie = ["seriesi",value];
             seriesArray[1] = serie;
-          } else if (value = "seriesii") {
+          } else if (key == "seriesii") {
             serie = ["seriesii",value];
             seriesArray[2] = serie;
-          } else if (value = "seriesiii") {
+          } else if (key == "seriesiii") {
             serie = ["seriesiii",value];
             seriesArray[3] = serie;
-          } else if (value = "seriesiv") {
+          } else if (key == "seriesiv") {
             serie = ["seriesiv",value];
             seriesArray[4] = serie;
-          } else if (value = "seriesv") {
+          } else if (key == "seriesv") {
             serie = ["seriesv",value];
             seriesArray[5] = serie;
-          } else if (value = "seriesvi") {
+          } else if (key == "seriesvi") {
             serie = ["seriesvi",value];
             seriesArray[6] = serie;
-          } else if (value = "seriesvii") {
+          } else if (key == "seriesvii") {
             serie = ["seriesvii",value];
             seriesArray[7] = serie;
           }
