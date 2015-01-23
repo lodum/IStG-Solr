@@ -338,6 +338,24 @@ fs.createReadStream(file)
           if (!_.contains(entry["istg:recordingTime"],object.split('"')[1].trim())) {
             entry["istg:recordingTime"].push(object.split('"')[1].trim());
           }
+        } else if (predicate === "http://purl.org/dc/terms/modified") {
+          dateTime = new Date(object.split('"')[1]);
+          entry["dct:modified"] = dateTime;
+        } else if (predicate === "http://purl.org/dc/terms/issued") {
+          if (!("dct:issued" in entry)) {
+            entry["dct:issued"] = [];
+          }
+          year = object.split('"')[1].trim();
+          date = new Date(year,1,1,0,0,0,0);
+          if (entry["dct:issued"].length > 0) {
+            _.each(entry["dct:issued"], function (num) {
+              if (+num !== +date) {
+                entry["dct:issued"].push(date);
+              }
+            });
+          } else  {
+            entry["dct:issued"].push(date);
+          }
         } else if (predicate === "http://purl.org/dc/terms/publisher") {
           if (!("dct:publisher" in entry)) {
             entry["dct:publisher"] = [];

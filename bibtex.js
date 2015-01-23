@@ -104,7 +104,12 @@ fs.createReadStream(file)
             signature.push(value);
           }
         } else if (key.indexOf("year") > -1) {
-          // entry["dct:issued"] = value.match(/\d+/g);
+          if (!("dct:issued" in entry)) {
+            entry["dct:issued"] = [];
+          }
+          year = value.match(/\d+/g);
+          date = new Date(year,1,1,0,0,0,0);
+          entry["dct:issued"].push(date);
         } else if (key === "subtitle") {
           entry["istg:subtitle"] = value;
         } else if(key.indexOf("publisher") > -1) {
@@ -224,7 +229,11 @@ fs.createReadStream(file)
           }
           entry["bibo:edition"].push(value);
         } else if (key.indexOf("changedate") > -1) {
-          //TODO
+          dateTime = value.split("-")[0];
+          date = dateTime.split("/")[0];
+          time = dateTime.split("/")[1];
+          dateTime = date.substring(0,4)+"-"+date.substring(4,6)+"-"+date.substring(6,8)+"T"+time+"Z";
+          entry["dct:modified"] = dateTime;
         }
     }
 
@@ -236,7 +245,7 @@ fs.createReadStream(file)
     }
 
     }
-    // console.log('Brackets: '+ openBr + ' || ' + chunk);
+
     if (openBr === 0 && chunk.length !== 0) {
       if (authors.length > 0) {
         if (!(entry["dc:creator"] in entry)) {
