@@ -187,10 +187,10 @@ fs.createReadStream(file)
         } else if (key.indexOf("volume") > -1) {
           volumes.push(value);
         } else if (key.indexOf("part") > -1) {
-          if (!("bibo:volume") > -1) {
-            entry["bibo:volume"] = [];
+          if (!("istg:volume_part") > -1) {
+            entry["istg:volume_part"] = [];
           }
-          entry["bibo:volume"].push(value);
+          entry["istg:volume_part"].push(value);
         } else if (key.indexOf("url") > -1) {
           if (!("istg:rezension" in entry)) {
             entry["istg:rezension"] = [];
@@ -301,6 +301,17 @@ fs.createReadStream(file)
           signatureAggregate = signatureAggregate + signature[i];
         }
         entry["istg:signatur"] = signatureAggregate;
+      }
+
+      if (volumes.length > 0) {
+        var volumesAggregate = "";
+        for (var i = 0; i < volumes.length; i++) {
+          if (volumesAggregate !== "") {
+            volumesAggregate += " , ";
+          }
+          volumesAggregate = volumesAggregate + volumes[i];
+        }
+        entry["bibo:volume"] = volumesAggregate;
       }
 
       if (comments.length > 0) {
