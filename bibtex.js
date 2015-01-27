@@ -187,7 +187,7 @@ fs.createReadStream(file)
         } else if (key.indexOf("volume") > -1) {
           volumes.push(value);
         } else if (key.indexOf("part") > -1) {
-          if (!("istg:volume_part") > -1) {
+          if (!("istg:volume_part" in entry)) {
             entry["istg:volume_part"] = [];
           }
           entry["istg:volume_part"].push(value);
@@ -248,7 +248,7 @@ fs.createReadStream(file)
 
     if (openBr === 0 && chunk.length !== 0) {
       if (authors.length > 0) {
-        if (!(entry["dc:creator"] in entry)) {
+        if (!("dc:creator" in entry)) {
           entry["dc:creator"] = [];
         }
         for (var i = 0; i < authors.length; i++) {
@@ -263,7 +263,7 @@ fs.createReadStream(file)
       }
 
       if (editors.length > 0) {
-        if (!(entry["bibo:editor"] in entry)) {
+        if (!("bibo:editor" in entry)) {
           entry["bibo:editor"] = [];
         }
         for (var i = 0; i < editors.length; i++) {
@@ -278,10 +278,10 @@ fs.createReadStream(file)
       }
 
       if (editorsa.length > 0) {
-        if (!(entry["dct:contributor"] in entry)) {
+        if (!("dct:contributor" in entry)) {
           entry["dct:contributor"] = [];
         }
-        for (var i = 0; i < editors.length; i++) {
+        for (var i = 0; i < editorsa.length; i++) {
           ref = entry["id"] + "/editora/" + i;
           editora = {};
           editora.id = ref;
@@ -312,6 +312,17 @@ fs.createReadStream(file)
           volumesAggregate = volumesAggregate + volumes[i];
         }
         entry["bibo:volume"] = volumesAggregate;
+      }
+
+      if (numbers.length > 0) {
+        var numbersAggregate = "";
+        for (var i = 0; i < numbers.length; i++) {
+          if (numbersAggregate !== "") {
+            numbersAggregate += " , ";
+          }
+          numbersAggregate = numbersAggregate + numbers[i];
+        }
+        entry["istg:reihe"] = numbersAggregate;
       }
 
       if (comments.length > 0) {
